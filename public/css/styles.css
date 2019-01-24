@@ -76,8 +76,13 @@ header {
   padding: 10px;  
 }
 
+.lock-icon {
+  cursor: pointer; 
+}
+
 /* Buttons */
 
 button {
   padding: 8px; 
+  cursor: pointer;
 }
