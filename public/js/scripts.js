@@ -19,14 +19,27 @@ toggleLock = () => {
   }
 }
 
-// Event Listeners 
-$('.generate-button').on('click', () => {
-  console.log('gerenrate hex values button has been clicked')
-  generateHexValues()
-  console.log(hexCode)
-})
+updateColorWindows = () => {
+  // debugger; 
+  // const windows = ['.color-window-one', '.color-window-two', '.color-window-three', '.color-window-four', '.color-window-five']
 
-$('.lock-icon').on('click', () => {
-  console.log('clicked icon')
-  toggleLock()
-})
+  // windows.forEach(window => {
+  //   if($(`${window}`).closest('i').hasClass('fa-lock-open')) {
+  //     const hexCode = generateHexValues()
+  //     console.log(hexCode)
+  //     $(window).css({"background-color": `${hexCode}`})
+  //   }
+  // })
+  let color
+  $('.fa-lock-open').each(element => {
+    color = generateHexValues()
+    $('.color-window').css({"background-color": `${color}`})
+    console.log(color)
+  }) 
+}
+
+// Event Listeners 
+$('.generate-button').on('click', updateColorWindows)
+
+$('.lock-icon').on('click', toggleLock)
+
