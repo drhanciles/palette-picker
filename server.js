@@ -3,9 +3,27 @@ const bodyParser = require('body-parser');
 const app = express(); 
 
 app.use(bodyParser.json()); 
-app.set('port', process.env.PORT || 3000); 
-app.locals.title = 'Palette Picker'; 
 app.use(express.static('public'))
+app.set('port', process.env.PORT || 3000); 
+
+app.locals.title = 'Palette Picker'; 
+app.locals.projects = [
+  {
+    id: 1, 
+    title: 'Cactus Jack', 
+    timeStamp: Date.now()
+  }, 
+  {
+    id: 2, 
+    title: 'Off-White Prestos', 
+    timeStamp: Date.now()
+  }, 
+  {
+    id: 3, 
+    title: 'Cactus Jack', 
+    timeStamp: Date.now()
+  }
+]
 
 app.listen(app.get('port'), () => {
   console.log(`${app.locals.title} is running on ${app.get('port')}.`)
@@ -14,9 +32,18 @@ app.listen(app.get('port'), () => {
 // Route Handlers
 // POST - project
 app.post('/api/v1/projects', (request, response) => {
-  const project = request.body
-  // if we don't currently have the project stored then add project to db - send 200
-  // if we do have the project then send the user an error - 500 or 400
+  const { project } = request.body
+  const id = Date.now()
+
+  if (!project) {
+    return response.status(422).send({
+      error: 'Project title has not been provided'
+    })
+  } else {
+    app.locals.projects.push({ id, project })
+    return response.status(201).json({ id, project})
+  }
+
 })
 
 // GET - project, after a palette has been saved to the project
