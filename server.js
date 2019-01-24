@@ -38,11 +38,11 @@ app.post('/api/v1/projects', (request, response) => {
 
   if (!project) {
     return response.status(422).send({
-      error: 'Project title has not been provided'
+      error: 'Project has not been provided'
     })
   } else {
-    app.locals.projects.push({ id, project, timeStamp })
-    return response.status(201).json({ id, project})
+    app.locals.projects.push({...project, id,  timeStamp })
+    return response.status(201).json({ id })
   }
 })
 
