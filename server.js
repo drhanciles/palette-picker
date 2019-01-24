@@ -46,14 +46,10 @@ app.post('/api/v1/projects', (request, response) => {
   }
 })
 
-app.get('api/v1/projects', (request, response) => {
+app.get('/api/v1/projects', (request, response) => {
   const projects = app.locals.projects
 
-  if(response.ok) {
-    return response.status(200).json(projects)
-  } else {
-    return response.sendStatus(500)
-  }
+  response.json({ projects })
 })
 
 // POST - palette to project
