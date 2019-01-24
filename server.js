@@ -11,9 +11,38 @@ app.listen(app.get('port'), () => {
   console.log(`${app.locals.title} is running on ${app.get('port')}.`)
 });
 
-// Endpoints
+// Route Handlers
 // POST - project
-// POST - palette to project
+app.post('/api/v1/projects', (request, response) => {
+  const project = response.body
+  // if we don't currently have the project stored then add project to db - send 200
+  // if we do have the project then send the user an error - 500 or 400
+})
+
 // GET - project, after a palette has been saved to the project
+app.get('api/v1/project', () => {
+  const palette = response.body
+  // if we have projects then get them 
+  // if we dont  have project send error - 400
+  // if error on my end send - 500 
+})
+
+// POST - palette to project
+app.post('/api/v1/palettes', (request, reponse) => {
+  const palette = response.body
+  // if we dont have that palette stored to the project then add palette
+  // if they already have the palette send the user an error - 500 or 400
+})
+
 // GET - palette that was saved to project
+app.get('/api/v1/palletes', (request, response) => {
+  const palette = response.body
+  // if we have the palette get it - 200
+  // if we dont have it send error - 500
+})
+
 // DELETE - palette from project
+app.delete('/api/v1/delete', (request, response) => {
+  // find palette id and remove palette from table - 400
+  //send error if issues - 500 
+})
