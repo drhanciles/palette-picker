@@ -33,6 +33,7 @@ app.listen(app.get('port'), () => {
 // POST - project
 app.post('/api/v1/projects', (request, response) => {
   const { project } = request.body
+  const timeStamp = Date.now()
   const id = Date.now()
 
   if (!project) {
@@ -40,10 +41,9 @@ app.post('/api/v1/projects', (request, response) => {
       error: 'Project title has not been provided'
     })
   } else {
-    app.locals.projects.push({ id, project })
+    app.locals.projects.push({ id, project, timeStamp })
     return response.status(201).json({ id, project})
   }
-
 })
 
 // GET - project, after a palette has been saved to the project
