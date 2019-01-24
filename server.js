@@ -46,10 +46,14 @@ app.post('/api/v1/projects', (request, response) => {
   }
 })
 
-// GET - project, after a palette has been saved to the project
 app.get('api/v1/projects', (request, response) => {
-  // if we have projects then get them - 200
-  // if error on my end send - 500 
+  const projects = app.locals.projects
+
+  if(response.ok) {
+    return response.status(200).json(projects)
+  } else {
+    return response.sendStatus(500)
+  }
 })
 
 // POST - palette to project
