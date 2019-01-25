@@ -30,7 +30,6 @@ app.listen(app.get('port'), () => {
 });
 
 // Route Handlers
-// POST - project
 app.post('/api/v1/projects', (request, response) => {
   const { project } = request.body
   const timeStamp = Date.now()
