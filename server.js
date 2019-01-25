@@ -92,15 +92,16 @@ app.post('/api/v1/palettes', (request, response) => {
   }
 })
 
-// GET - palette that was saved to project
 app.get('/api/v1/palettes', (request, response) => {
   const palettes = app.locals.palettes
 
   response.json({ palettes })
 })
 
-// DELETE - palette from project
-app.delete('/api/v1/delete', (request, response) => {
-  // find palette id and remove palette from table - 400
-  //send error if issues - 500 
+app.delete('/api/v1/palettes/:id', (request, response) => {
+ const { id }  = request.params
+
+ const updatedPalettes = app.locals.palettes.filter(palette => palette.id !== id)
+
+ response.json({ updatedPalettes })
 })
