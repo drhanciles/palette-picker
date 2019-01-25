@@ -76,7 +76,6 @@ app.get('/api/v1/projects', (request, response) => {
   response.json({ projects })
 })
 
-// POST - palette to project
 app.post('/api/v1/palettes', (request, response) => {
   const { palette } = request.body
   const id = Date.now()
