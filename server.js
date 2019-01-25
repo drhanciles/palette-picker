@@ -94,9 +94,9 @@ app.post('/api/v1/palettes', (request, response) => {
 
 // GET - palette that was saved to project
 app.get('/api/v1/palletes', (request, response) => {
-  const palette = response.body
-  // if we have the palette get it - 200
-  // if we dont have it send error - 500
+  const palettes = app.locals.palettes
+
+  response.json({ palettes })
 })
 
 // DELETE - palette from project
