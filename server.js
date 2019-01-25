@@ -54,7 +54,6 @@ app.listen(app.get('port'), () => {
   console.log(`${app.locals.title} is running on ${app.get('port')}.`)
 });
 
-// Route Handlers
 app.post('/api/v1/projects', (request, response) => {
   const { project } = request.body
   const timeStamp = Date.now()
@@ -100,7 +99,6 @@ app.get('/api/v1/palettes', (request, response) => {
 
 app.delete('/api/v1/palettes/:id', (request, response) => {
  const { id }  = request.params
-
  const updatedPalettes = app.locals.palettes.filter(palette => palette.id !== id)
 
  response.json({ updatedPalettes })
