@@ -78,9 +78,18 @@ app.get('/api/v1/projects', (request, response) => {
 
 // POST - palette to project
 app.post('/api/v1/palettes', (request, response) => {
-  const palettes = app.locals.palettes
-  // if we dont have that palette stored to the project then add palette
-  // if they already have the palette send the user an error - 500 or 400
+  const { palette } = request.body
+  const id = Date.now()
+  const timeStamp = Date.now()
+
+  if(!palette) {
+    return response.status(422).send({
+      error: 'Palette has not been provided'
+    })
+  } else {
+    app.locals.palettes.push({...palette, id, timeStamp})
+    return response.status(201).json({ id })
+  }
 })
 
 // GET - palette that was saved to project
