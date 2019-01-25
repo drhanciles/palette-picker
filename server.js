@@ -25,6 +25,31 @@ app.locals.projects = [
   }
 ]
 
+app.locals.palettes = [
+  {
+    id: 1, 
+    projectId: 1, 
+    paletteName: 'Home Colorway', 
+    colorOne: '#f5eddc',
+    colorTwo: '#29aeb5', 
+    colorThree: '#b8cbba', 
+    colorFour: '#db7e89', 
+    colorFive: '#a85d48', 
+    timeStamp: Date.now()
+  }, 
+  {
+    id: 2, 
+    projectId: 2, 
+    paletteName: 'Away Colorway', 
+    colorOne: '#ce0a0b',
+    colorTwo: '#ee441a', 
+    colorThree: '#e6ca8a', 
+    colorFour: '#9e9279', 
+    colorFive: '#3a3634', 
+    timeStamp: Date.now()
+  }
+]
+
 app.listen(app.get('port'), () => {
   console.log(`${app.locals.title} is running on ${app.get('port')}.`)
 });
@@ -53,7 +78,7 @@ app.get('/api/v1/projects', (request, response) => {
 
 // POST - palette to project
 app.post('/api/v1/palettes', (request, response) => {
-  const palette = response.body
+  const palettes = app.locals.palettes
   // if we dont have that palette stored to the project then add palette
   // if they already have the palette send the user an error - 500 or 400
 })
