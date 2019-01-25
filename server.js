@@ -93,7 +93,7 @@ app.post('/api/v1/palettes', (request, response) => {
 })
 
 // GET - palette that was saved to project
-app.get('/api/v1/palletes', (request, response) => {
+app.get('/api/v1/palettes', (request, response) => {
   const palettes = app.locals.palettes
 
   response.json({ palettes })
