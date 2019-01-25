@@ -80,6 +80,7 @@ app.get('/api/v1/projects', (request, response) => {
 app.post('/api/v1/palettes', (request, response) => {
   const { palette } = request.body
   const id = Date.now()
+  const projectId = Date.now()
   const timeStamp = Date.now()
 
   if(!palette) {
@@ -87,7 +88,7 @@ app.post('/api/v1/palettes', (request, response) => {
       error: 'Palette has not been provided'
     })
   } else {
-    app.locals.palettes.push({...palette, id, timeStamp})
+    app.locals.palettes.push({...palette, id, projectId, timeStamp})
     return response.status(201).json({ id })
   }
 })
