@@ -2,7 +2,7 @@ const express = require('express');
 const bodyParser = require('body-parser'); 
 const app = express(); 
 const environment = process.env.NODE_ENV || 'development'; 
-const configuration = require('.knexfile')[environment]
+const configuration = require('./knexfile')[environment]
 const database = require('knex')(configuration); 
 
 
@@ -73,11 +73,13 @@ app.post('/api/v1/projects', (request, response) => {
   }
 })
 
-app.get('/api/v1/projects', (request, response) => {
-  const projects = app.locals.projects
-
-  response.json({ projects })
-})
+// app.get('/api/v1/projects', (request, response) => {
+//   database('projects').select()
+//     .then((projects) => {
+//       response.status(200).json(projects)
+//     })
+//     .catch((error))
+// })
 
 app.post('/api/v1/palettes', (request, response) => {
   const { palette } = request.body

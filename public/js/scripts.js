@@ -20,21 +20,15 @@ toggleLock = () => {
 }
 
 updateColorWindows = () => {
-  // debugger; 
-  // const windows = ['.color-window-one', '.color-window-two', '.color-window-three', '.color-window-four', '.color-window-five']
-
-  // windows.forEach(window => {
-  //   if($(`${window}`).closest('i').hasClass('fa-lock-open')) {
-  //     const hexCode = generateHexValues()
-  //     console.log(hexCode)
-  //     $(window).css({"background-color": `${hexCode}`})
-  //   }
-  // })
-  let color
-  $('.fa-lock-open').each(element => {
-    color = generateHexValues()
-    $('.color-window').css({"background-color": `${color}`})
-    console.log(color)
+  const windows = ['.color-window-one', '.color-window-two', '.color-window-three', '.color-window-four', '.color-window-five']
+  
+  windows.forEach(window => { 
+   let obj = $(`${window}`).siblings('.color-information')
+    if($(obj)[0].find('.lock-icon').hasClass('fa-lock-open')) {
+      let hexCode = generateHexValues()
+      console.log(hexCode)
+      $(window).css({"background-color": `${hexCode}`})
+    }
   }) 
 }
 
