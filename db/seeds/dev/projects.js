@@ -5,7 +5,7 @@ exports.seed = (knex, Promise) => {
     return Promise.all([
       knex('projects')
       .insert([{title: 'Palace Adidas'}, {title: 'Nike SB Blazer'}], 'id')
-      .then(() => {
+      .then(project => {
         return knex('palettes').insert([
           {
             title: 'lev colorway', 
