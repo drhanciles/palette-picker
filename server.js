@@ -100,9 +100,13 @@ app.post('/api/v1/palettes', (request, response) => {
 })
 
 app.get('/api/v1/palettes', (request, response) => {
-  const palettes = app.locals.palettes
-
-  response.json({ palettes })
+  database('palettes').select()
+    .then((palettes) => {
+      response.status(200).json(palettes)
+    })
+    .catch((error) => {
+      response.status(500).json({ error })
+    })
 })
 
 app.delete('/api/v1/palettes/:id', (request, response) => {
