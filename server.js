@@ -73,13 +73,15 @@ app.post('/api/v1/projects', (request, response) => {
   }
 })
 
-// app.get('/api/v1/projects', (request, response) => {
-//   database('projects').select()
-//     .then((projects) => {
-//       response.status(200).json(projects)
-//     })
-//     .catch((error))
-// })
+app.get('/api/v1/projects', (request, response) => {
+  database('projects').select()
+    .then((projects) => {
+      response.status(200).json(projects)
+    })
+    .catch((error) => {
+      response.status(500).json({ error })
+    })
+})
 
 app.post('/api/v1/palettes', (request, response) => {
   const { palette } = request.body
