@@ -55,9 +55,12 @@ saveProjects = (project) => {
   .then(result => console.log(result))
   .catch(error => console.log(error))
   updateProjectSelect(projectTitle)
+  clearInputs()
 } 
 
-
+clearInputs = () => {
+  $('input').val(' ')
+}
 
 // Event Listeners 
 $('.generate-button').on('click', updateColorWindows)
