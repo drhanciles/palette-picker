@@ -120,27 +120,29 @@ app.get('/api/v1/palettes', (request, response) => {
 
 app.get('/api/v1/palettes/:id/projects', (request, response) => {
   database('palettes')
-  .where('project_id', request.params.id)
-  .then(palette => {
-    palette.length
-    ? response.status(200).json(palette)
-    : response.status(400).send({ error: 'project has not been created'})
-  })
-  .catch(error => console.log(error))
+    .where('project_id', request.params.id)
+    .then(palette => {
+      palette.length
+      ? response.status(200).json(palette)
+      : response.status(400).send({ error: 'project has not been created'})
+    })
+    .catch(error => console.log(error))
 })
 
-// app.delete('/api/v1/palettes/:id', (request, response) => {
-//  const { id }  = request.params
+app.delete('/api/v1/palettes/:id', (request, response) => {
+ const { id }  = request.params
 
-//  database('palettes')
-//  .where('id', id)
-//  .del()
-//  .then(result => {
-//    return result 
-//    ? response.status(200).json({
-//      result: ``
-//    })
-//  })
-
-//  response.json({ updatedPalettes })
-// })
+ database('palettes')
+  .where('id', id)
+  .del()
+  .then(result => {
+   return result 
+   ? response.status(200).json({
+     result: `${result} was deleted`
+   })
+   :response.status(404).json({error: `${result} could not be deleted`})
+  })
+  .catch(error => {
+   response.status(500).json({error})
+  })
+})
