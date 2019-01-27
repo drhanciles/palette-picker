@@ -5,54 +5,11 @@ const environment = process.env.NODE_ENV || 'development';
 const configuration = require('./knexfile')[environment]
 const database = require('knex')(configuration); 
 
-
 app.use(bodyParser.json()); 
 app.use(express.static('public'))
 app.set('port', process.env.PORT || 3000); 
 
 app.locals.title = 'Palette Picker'; 
-app.locals.projects = [
-  {
-    id: 1, 
-    title: 'Cactus Jack', 
-    timeStamp: Date.now()
-  }, 
-  {
-    id: 2, 
-    title: 'Off-White Prestos', 
-    timeStamp: Date.now()
-  }, 
-  {
-    id: 3, 
-    title: 'Cactus Jack', 
-    timeStamp: Date.now()
-  }
-]
-
-app.locals.palettes = [
-  {
-    id: 1, 
-    projectId: 1, 
-    paletteName: 'Home Colorway', 
-    colorOne: '#f5eddc',
-    colorTwo: '#29aeb5', 
-    colorThree: '#b8cbba', 
-    colorFour: '#db7e89', 
-    colorFive: '#a85d48', 
-    timeStamp: Date.now()
-  }, 
-  {
-    id: 2, 
-    projectId: 2, 
-    paletteName: 'Away Colorway', 
-    colorOne: '#ce0a0b',
-    colorTwo: '#ee441a', 
-    colorThree: '#e6ca8a', 
-    colorFour: '#9e9279', 
-    colorFive: '#3a3634', 
-    timeStamp: Date.now()
-  }
-]
 
 app.listen(app.get('port'), () => {
   console.log(`${app.locals.title} is running on ${app.get('port')}.`)
@@ -68,7 +25,6 @@ app.post('/api/v1/projects', (request, response) => {
     .catch(error => {
       response.status(500).json({ error })
     })
-
 })
 
 app.get('/api/v1/projects', (request, response) => {
