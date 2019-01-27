@@ -72,7 +72,6 @@ $('document').ready(() => {
     .then(result => result.forEach(project => {
       updateProjectSelect(project.title)
       savedProjects[project.title] = project.id
-      console.log(savedProjects)
     }))
 })
 
