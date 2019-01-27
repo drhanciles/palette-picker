@@ -32,6 +32,7 @@ updateColorWindows = () => {
     if(y) {
       let hexCode = generateHexValues()
       $(window).css({"background-color": `${hexCode}`})
+      $('.hex-value').html(`${hexCode}`)
     }
   }) 
 }
