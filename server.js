@@ -82,19 +82,30 @@ app.get('/api/v1/projects', (request, response) => {
 })
 
 app.post('/api/v1/palettes', (request, response) => {
-  const { palette } = request.body
-  const id = Date.now()
-  const projectId = Date.now()
-  const timeStamp = Date.now()
+  const newPalette  = request.body
+  const paletteKeys = [
+    'title', 
+    'color_one', 
+    'color_two', 
+    'color_three', 
+    'color_four', 
+    'color_five', 
+    'project_id'
+  ]
 
-  if(!palette) {
-    return response.status(422).send({
-      error: 'Palette has not been provided'
+  paletteKeys.forEach(key => {
+    if (!palette[key]) {
+      return response.status(422).send('error')
+    }
+  })
+
+  database('palettes').insert(newPalette, 'id')
+    .then(palette => {
+      response.status(201).json({id: palette[0], ...newPalette})
     })
-  } else {
-    app.locals.palettes.push({...palette, id, projectId, timeStamp})
-    return response.status(201).json({ id })
-  }
+    .catch(error => {
+      response.status(500).json({ error })
+    })
 })
 
 app.get('/api/v1/palettes', (request, response) => {
