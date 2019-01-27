@@ -59,18 +59,16 @@ app.listen(app.get('port'), () => {
 });
 
 app.post('/api/v1/projects', (request, response) => {
-  const { project } = request.body
-  const timeStamp = Date.now()
-  const id = Date.now()
+  const project = request.body
 
-  if (!project) {
-    return response.status(422).send({
-      error: 'Project has not been provided'
+  database('projects').insert(project, 'id')
+    .then(project => {
+      response.status(201).json({ id: project[0] })
     })
-  } else {
-    app.locals.projects.push({...project, id,  timeStamp })
-    return response.status(201).json({ id })
-  }
+    .catch(error => {
+      response.status(500).json({ error })
+    })
+
 })
 
 app.get('/api/v1/projects', (request, response) => {
