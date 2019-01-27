@@ -38,7 +38,7 @@ updateProjectSelect = (title) => {
   $('select').append(newOption)
 }
 
-saveProjects = (title) => {
+saveProject = (title) => {
   const title = $('.project-name').val()
   let obj = { title }
   fetch('localhost:3000/api/v1/projects', {
@@ -59,4 +59,6 @@ saveProjects = (title) => {
 $('.generate-button').on('click', updateColorWindows)
 
 $('.lock-icon').on('click', toggleLock)
+
+$('.create-project-button').on('click', saveProject)
 
