@@ -38,6 +38,23 @@ updateProjectSelect = (title) => {
   $('select').append(newOption)
 }
 
+saveProjects = (title) => {
+  const title = $('.project-name').val()
+  let obj = { title }
+  fetch('localhost:3000/api/v1/projects', {
+    method: 'POST', 
+    body: JSON.stringify(obj), 
+    headers: {
+      'Content-Type': 'application/json'
+    }
+  })
+  .then(response => response.json())
+  .catch(error => {
+    throw new Error('Unable to Save Project')
+  })
+  updateProjectSelect(title)
+} 
+
 // Event Listeners 
 $('.generate-button').on('click', updateColorWindows)
 
