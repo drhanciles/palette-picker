@@ -1,3 +1,6 @@
+// Global Variables
+let savedProjects = {}
+
 // Functions
 getRandomDigits = () => (Math.floor(Math.random() * 16 ))
 
@@ -51,9 +54,10 @@ saveProjects = (project) => {
   }
 
   fetch('/api/v1/projects', options )
-  .then(response => response.json())
-  .then(result => console.log(result))
-  .catch(error => console.log(error))
+    .then(response => response.json())
+    .then(result => console.log(result))
+    .catch(error => console.log(error))
+  
   updateProjectSelect(projectTitle)
   clearInputs()
 } 
@@ -61,6 +65,16 @@ saveProjects = (project) => {
 clearInputs = () => {
   $('input').val(' ')
 }
+
+$('document').ready(() => {
+  fetch('/api/v1/projects')
+    .then(response => response.json())
+    .then(result => result.forEach(project => {
+      updateProjectSelect(project.title)
+      savedProjects[project.title] = project.id
+      console.log(savedProjects)
+    }))
+})
 
 // Event Listeners 
 $('.generate-button').on('click', updateColorWindows)
