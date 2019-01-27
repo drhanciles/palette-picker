@@ -38,27 +38,31 @@ updateProjectSelect = (title) => {
   $('select').append(newOption)
 }
 
-saveProject = (title) => {
-  const title = $('.project-name').val()
-  let obj = { title }
-  fetch('localhost:3000/api/v1/projects', {
+saveProjects = (project) => {
+  event.preventDefault()
+  let projectTitle = $('.project-name').val()
+  let obj = { title: projectTitle }
+  const options = {
     method: 'POST', 
     body: JSON.stringify(obj), 
     headers: {
       'Content-Type': 'application/json'
     }
-  })
+  }
+
+  fetch('/api/v1/projects', options )
   .then(response => response.json())
-  .catch(error => {
-    throw new Error('Unable to Save Project')
-  })
-  updateProjectSelect(title)
+  .then(result => console.log(result))
+  .catch(error => console.log(error))
+  updateProjectSelect(projectTitle)
 } 
+
+
 
 // Event Listeners 
 $('.generate-button').on('click', updateColorWindows)
 
 $('.lock-icon').on('click', toggleLock)
 
-$('.create-project-button').on('click', saveProject)
+$('.create-project-button').on('click', saveProjects)
 
