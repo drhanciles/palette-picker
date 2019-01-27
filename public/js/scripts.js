@@ -33,6 +33,11 @@ updateColorWindows = () => {
   }) 
 }
 
+updateProjectSelect = (title) => {
+  let newOption = `<option>${title}</option>`
+  $('select').append(newOption)
+}
+
 // Event Listeners 
 $('.generate-button').on('click', updateColorWindows)
 
