@@ -118,6 +118,17 @@ app.get('/api/v1/palettes', (request, response) => {
     })
 })
 
+app.get('/api/v1/palettes/:id/projects', (request, repsonse) => {
+  database('palettes')
+  .where('project_id', request.param.id)
+  .then(palette => {
+    palette.length
+    ? response.status(200).json(palette)
+    : response.status(400).send({ error: 'project has not been created'})
+  })
+  .catch(error => console.log(error))
+})
+
 app.delete('/api/v1/palettes/:id', (request, response) => {
  const { id }  = request.params
  const updatedPalettes = app.locals.palettes.filter(palette => palette.id !== id)
