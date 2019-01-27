@@ -24,9 +24,10 @@ updateColorWindows = () => {
   
   windows.forEach(window => { 
    let obj = $(`${window}`).siblings('.color-information')
-    if($(obj)[0].find('.lock-icon').hasClass('fa-lock-open')) {
+   let y = $(obj).children().find('.lock-icon').hasClass('fa-lock-open')
+    console.log(y)
+    if(y) {
       let hexCode = generateHexValues()
-      console.log(hexCode)
       $(window).css({"background-color": `${hexCode}`})
     }
   }) 

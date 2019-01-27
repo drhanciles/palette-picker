@@ -129,9 +129,18 @@ app.get('/api/v1/palettes/:id/projects', (request, response) => {
   .catch(error => console.log(error))
 })
 
-app.delete('/api/v1/palettes/:id', (request, response) => {
- const { id }  = request.params
- const updatedPalettes = app.locals.palettes.filter(palette => palette.id !== id)
+// app.delete('/api/v1/palettes/:id', (request, response) => {
+//  const { id }  = request.params
 
- response.json({ updatedPalettes })
-})
+//  database('palettes')
+//  .where('id', id)
+//  .del()
+//  .then(result => {
+//    return result 
+//    ? response.status(200).json({
+//      result: ``
+//    })
+//  })
+
+//  response.json({ updatedPalettes })
+// })
