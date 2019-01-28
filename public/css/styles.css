@@ -106,9 +106,24 @@ button {
 
 /* Inputs */
 input {
-  margin-left: 10px; 
-  height: 80px; 
+  margin: 5px 0 0 10px; 
+  height: 70px; 
   width: 300px;
   font-size: 2rem; 
   font-weight: 400;  
 }
+
+input::placeholder {
+  text-indent: 8px; 
+}
+
+/* Select */
+select {
+  width: 235px; 
+  height: 70px; 
+  font-size: 2rem; 
+  font-weight: 600; 
+  background-color: #C4C4C4; 
+}
+
+
