@@ -30,15 +30,15 @@ updateColorWindows = () => {
    let updateCheck = $(obj).children().find('.lock-icon').hasClass('fa-lock-open')
     if(updateCheck) {
       let hexCode = generateHexValues()
-      console.log(hexCode)
       $(window).css({"background-color": `${hexCode}`})   
       $(obj).children().find('.hex-value').text(hexCode)
     }
   }) 
+  savePalettes()
 }
 
 updateProjectSelect = (title) => {
-  let newOption = `<option>${title}</option>`
+  let newOption = `<option value=${title}>${title}</option>`
   $('select').append(newOption)
 }
 
@@ -76,15 +76,26 @@ $('document').ready(() => {
     }))
 })
 
-// savePalettes = () => {
-//   // paletteData, paletteName, projectTitle - parameters
-//   // let savedPaletteData = []
-//   // let currentPalettes = $('.hex-value').html()
-//   console.log(currentPalettes)
+savePalettes = () => {
+  event.preventDefault()
+  // paletteData, paletteName, projectTitle - parameters
+  const savedPaletteData = []
+  const hexCodes = ['.value-one', '.value-two', '.value-three', '.value-four', '.value-five']
+  const title = $('.palette-name').val()
+  savedPaletteData.push(title)
+  
+  hexCodes.forEach(value => {
+    let text = $(`${value}`).html()
+    savedPaletteData.push(text)
+  })
 
-//   // takes in a palette 
-//   // use a fetch method to save palette to our database
-// }
+  const project = $('select').find(':selected').text()
+  console.log(project)
+  console.log(savedPaletteData)
+  console.log(savedProjects)
+
+  clearInputs()
+}
 
 // Event Listeners 
 $('.generate-button').on('click', updateColorWindows)
@@ -93,3 +104,4 @@ $('.lock-icon').on('click', toggleLock)
 
 $('.create-project-button').on('click', saveProjects)
 
+$('.save-palette-button').on('click', savePalettes)
