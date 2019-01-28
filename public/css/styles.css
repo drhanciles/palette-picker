@@ -137,6 +137,7 @@ select {
 /* Saved Projects and Palettes */
 .project-container {
   width: 70%; 
+  margin: 0 auto;  
 }
 
 .project-header {

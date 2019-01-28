@@ -65,7 +65,7 @@ saveProjects = (project) => {
                       <header class="project-header">
                         <p class="saved-project-title">${projectTitle}</p>
                       </header>
-                      <article class=saved-palette-container></article>
+                      <article class="saved-palette-container"></article>
                     </div>
                     `
   $('.project-container').append(newProject)
