@@ -105,7 +105,6 @@ savePalettes = () => {
 }
 
 postPalettes = (paletteData, projectId, paletteTitle) => {
-
   const paletteParams = paletteData.reduce((obj, color, index,) => {
     const words = ['one', 'two', 'three', 'four', 'five']
       obj['title'] = paletteTitle
@@ -153,6 +152,38 @@ postPalettes = (paletteData, projectId, paletteTitle) => {
     })
     .catch(error => {
       throw new Error(error)
+    })
+}
+
+getPalettes = (id) => {
+  fetch(`/api/v1/palettes/{id}/projects`)
+    .then(response => response.json())
+    .then(result => {
+      result.foEach(palette => {
+        if(!savedPalettes[palette.project_id]) {
+          savedPalettes[palette.project_id] = [
+            {
+              [palette.title]: id, 
+              id: palette.id, 
+              color_one: palette.color_one,
+              color_two: palette.color_two, 
+              color_three: palette.color_three, 
+              color_four: palette.color_four, 
+              color_five: palette.color_five
+            }
+          ]
+        } else {
+          savedPalettes[palette.project_id].push({
+            [palette.title]: id, 
+            id: palette.id, 
+            color_one: palette.color_one,
+            color_two: palette.color_two, 
+            color_three: palette.color_three, 
+            color_four: palette.color_four, 
+            color_five: palette.color_five
+          })
+        }
+      })
     })
 }
 
