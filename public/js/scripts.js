@@ -93,6 +93,7 @@ savePalettes = () => {
   let projectId = savedProjects[matchingId]
   
   postPalettes(savedPaletteData, projectId, title)
+  clearInputs()
 }
 
 postPalettes = (paletteData, projectId, paletteTitle) => {
