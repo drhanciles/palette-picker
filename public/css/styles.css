@@ -12,6 +12,10 @@ body {
   width: 100vw; 
 }
 
+.fas:hover {
+  color: #026FEB; 
+}
+
 /* Header */
 header {
   background-color: #40434A; 
@@ -103,6 +107,7 @@ button:hover {
   background-color: #026FEB; 
   color: #ffffff; 
 }
+
 .generate-icon {
   margin-left: 5px; 
 }
