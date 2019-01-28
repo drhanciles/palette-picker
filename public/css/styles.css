@@ -93,12 +93,16 @@ button {
   height: 80px;  
   width: 225px;
   border-radius: 15px;  
-  font-size: 1.5rem; 
+  font-size: 1.75rem; 
   font-weight: 600; 
   cursor: pointer;
   background-color: #C4C4C4; 
 }
 
+button:hover {
+  background-color: #026FEB; 
+  color: #ffffff; 
+}
 .generate-icon {
   margin-left: 5px; 
 }
