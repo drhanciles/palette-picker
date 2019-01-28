@@ -50,12 +50,13 @@ app.post('/api/v1/palettes', (request, response) => {
   ]
 
   paletteKeys.forEach(key => {
-    if (!palette[key]) {
+    if (!newPalette[key]) {
       return response.status(422).send('error')
     }
   })
 
-  database('palettes').insert(newPalette, 'id')
+  database('palettes')
+    .insert(newPalette, 'id')
     .then(palette => {
       response.status(201).json({id: palette[0], ...newPalette})
     })

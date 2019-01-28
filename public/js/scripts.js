@@ -1,5 +1,6 @@
 // Global Variables
 let savedProjects = {}
+let savedPalettes = {}
 
 // Functions
 getRandomDigits = () => (Math.floor(Math.random() * 16 ))
@@ -34,7 +35,6 @@ updateColorWindows = () => {
       $(obj).children().find('.hex-value').text(hexCode)
     }
   }) 
-  savePalettes()
 }
 
 updateProjectSelect = (title) => {
@@ -81,7 +81,6 @@ savePalettes = () => {
   const savedPaletteData = []
   const hexCodes = ['.value-one', '.value-two', '.value-three', '.value-four', '.value-five']
   const title = $('.palette-name').val()
-  savedPaletteData.push(title)
   
   hexCodes.forEach(value => {
     let text = $(`${value}`).html()
@@ -92,11 +91,63 @@ savePalettes = () => {
   let data = Object.keys(savedProjects)
   let matchingId = data.find(value => value === project)
   let projectId = savedProjects[matchingId]
-  savedPaletteData.push(projectId)
-
-  console.log(savedPaletteData)
-  clearInputs()
+  
+  postPalettes(savedPaletteData, projectId, title)
 }
+
+postPalettes = (paletteData, projectId, paletteTitle) => {
+
+  const paletteParams = paletteData.reduce((obj, color, index,) => {
+    const words = ['one', 'two', 'three', 'four', 'five']
+      obj['title'] = paletteTitle
+      obj[`color_${words[index]}`] = color
+      obj['project_id'] = projectId
+      return obj
+  }, {})
+ 
+    const options = {
+      method: 'POST', 
+      body: JSON.stringify(paletteParams), 
+      headers: {
+        'Content-Type': 'application/json'
+      }
+    }
+
+  fetch('/api/v1/palettes', options)
+    .then(response => response.json())
+    .then(result => {
+      if(!savedPalettes[result.project_id]) {
+        savedPalettes[result.project_id] = [
+          {
+            [result.title]: result.project_id, 
+            id: result.id, 
+            title: result.title, 
+            color_one: result.color_one, 
+            color_two: result.color_two, 
+            color_three: result.color_three, 
+            color_four: result.color_four, 
+            color_five: result.color_five
+          }
+        ]
+      } else {
+        savedPalettes[result.project_id].push({
+            [result.title]: result.project_id, 
+            id: result.id, 
+            title: result.title, 
+            color_one: result.color_one, 
+            color_two: result.color_two, 
+            color_three: result.color_three, 
+            color_four: result.color_four, 
+            color_five: result.color_five
+        })
+      }
+    })
+    .catch(error => {
+      throw new Error(error)
+    })
+}
+
+
 
 // Event Listeners 
 $('.generate-button').on('click', updateColorWindows)
