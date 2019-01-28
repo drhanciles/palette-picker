@@ -41,8 +41,8 @@ header {
 
 .window {
   border-radius: 0 15px 0 15px; 
-  height: 200px; 
-  width: 200px; 
+  height: 300px; 
+  width: 300px; 
 }
 
 /* Default Window Colors */
@@ -77,7 +77,12 @@ header {
   padding: 10px;  
 }
 
+.hex-value {
+  font-size: 2rem; 
+}
+
 .lock-icon {
+  font-size: 2rem;
   cursor: pointer; 
 }
 
@@ -85,5 +90,25 @@ header {
 
 button {
   padding: 8px; 
+  margin: 0 0 30px 50px;
+  height: 80px;  
+  width: 225px;
+  border-radius: 15px;  
+  font-size: 1.5rem; 
+  font-weight: 600; 
   cursor: pointer;
+  background-color: #C4C4C4; 
+}
+
+.generate-icon {
+  margin-left: 5px; 
+}
+
+/* Inputs */
+input {
+  margin-left: 10px; 
+  height: 80px; 
+  width: 300px;
+  font-size: 2rem; 
+  font-weight: 400;  
 }
