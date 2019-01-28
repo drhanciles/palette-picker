@@ -15,6 +15,16 @@ generateHexValues = () =>  {
   return hexCode = `#${hexValue}`
 }
 
+$('document').ready(() => {
+  fetch('/api/v1/projects')
+    .then(response => response.json())
+    .then(result => result.forEach(project => {
+      updateProjectSelect(project.title)
+      savedProjects[project.title] = project.id
+    }))
+    .catch(error => console.log(error))
+})
+
 toggleLock = () => {
   if($(event.target).hasClass('fa-lock-open')) {
     $(event.target).removeClass('fa-lock-open').addClass('fa-lock')
@@ -75,15 +85,6 @@ clearInputs = () => {
   $('input').val(' ')
 }
 
-$('document').ready(() => {
-  fetch('/api/v1/projects')
-    .then(response => response.json())
-    .then(result => result.forEach(project => {
-      updateProjectSelect(project.title)
-      savedProjects[project.title] = project.id
-    }))
-})
-
 savePalettes = () => {
   event.preventDefault()
   const savedPaletteData = []
@@ -102,6 +103,22 @@ savePalettes = () => {
   
   postPalettes(savedPaletteData, projectId, title)
   clearInputs()
+  let newPalette = `
+                  <article class=saved-palette-container>
+                    <span class="name-delete-container">
+                      <p class="saved-palette-name">Pastelle Colorway</p>
+                      <i class="fas fa-times delete-palette"></i>
+                    </span>
+                    <div class="block-container">
+                      <div class="block color-block-one"></div>
+                      <div class="block color-block-two"></div>
+                      <div class="block color-block-three"></div>
+                      <div class="block color-block-four"></div>
+                      <div class="block color-block-five"></div>
+                    </div>
+                  </article>
+                `
+  $('saved-palette-container').append(newPalette)
 }
 
 postPalettes = (paletteData, projectId, paletteTitle) => {
@@ -185,6 +202,7 @@ getPalettes = (id) => {
         }
       })
     })
+    .catch(error => console.log(error))
 }
 
 
