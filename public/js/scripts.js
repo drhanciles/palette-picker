@@ -61,6 +61,14 @@ saveProjects = (project) => {
   
   updateProjectSelect(projectTitle)
   clearInputs()
+  let newProject = `<div class="saved-project">
+                      <header class="project-header">
+                        <p class="saved-project-title">${projectTitle}</p>
+                      </header>
+                      <article class=saved-palette-container></article>
+                    </div>
+                    `
+  $('.project-container').append(newProject)
 } 
 
 clearInputs = () => {
@@ -147,6 +155,8 @@ postPalettes = (paletteData, projectId, paletteTitle) => {
       throw new Error(error)
     })
 }
+
+
 
 
 
