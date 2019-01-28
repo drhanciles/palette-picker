@@ -2,6 +2,18 @@
 let savedProjects = {}
 let savedPalettes = {}
 
+// Event Listeners 
+$('.generate-button').on('click', updateColorWindows)
+
+$('.lock-icon').on('click', toggleLock)
+
+$('.create-project-button').on('click', saveProjects)
+
+$('.save-palette-button').on('click', savePalettes)
+
+$('delete-palette').on('click', deletePalette)
+
+
 // Functions
 getRandomDigits = () => (Math.floor(Math.random() * 16 ))
 
@@ -205,15 +217,14 @@ getPalettes = (id) => {
     .catch(error => console.log(error))
 }
 
-
-
-
-
-// Event Listeners 
-$('.generate-button').on('click', updateColorWindows)
-
-$('.lock-icon').on('click', toggleLock)
-
-$('.create-project-button').on('click', saveProjects)
-
-$('.save-palette-button').on('click', savePalettes)
+deletePalette = () => {
+  const palette = $('.delete-palette').closest('.saved-palette-name').text()
+  fetch(`api/palettes/${palette.id}`, {
+    method: 'DELETE'
+  })
+  .then(response => response.json())
+  .then(result => {})
+  .catch(error => {
+    throw new Error('Currently Unable to Delete')
+  })
+}
