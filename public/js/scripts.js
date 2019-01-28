@@ -24,15 +24,15 @@ toggleLock = () => {
 
 updateColorWindows = () => {
   const windows = ['.color-window-one', '.color-window-two', '.color-window-three', '.color-window-four', '.color-window-five']
-  
+
   windows.forEach(window => { 
    let obj = $(`${window}`).siblings('.color-information')
-   let y = $(obj).children().find('.lock-icon').hasClass('fa-lock-open')
-    console.log(y)
-    if(y) {
+   let updateCheck = $(obj).children().find('.lock-icon').hasClass('fa-lock-open')
+    if(updateCheck) {
       let hexCode = generateHexValues()
-      $(window).css({"background-color": `${hexCode}`})
-      $('.hex-value').html(`${hexCode}`)
+      console.log(hexCode)
+      $(window).css({"background-color": `${hexCode}`})   
+      $(obj).children().find('.hex-value').text(hexCode)
     }
   }) 
 }
@@ -75,6 +75,16 @@ $('document').ready(() => {
       savedProjects[project.title] = project.id
     }))
 })
+
+// savePalettes = () => {
+//   // paletteData, paletteName, projectTitle - parameters
+//   // let savedPaletteData = []
+//   // let currentPalettes = $('.hex-value').html()
+//   console.log(currentPalettes)
+
+//   // takes in a palette 
+//   // use a fetch method to save palette to our database
+// }
 
 // Event Listeners 
 $('.generate-button').on('click', updateColorWindows)
