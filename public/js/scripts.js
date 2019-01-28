@@ -78,7 +78,6 @@ $('document').ready(() => {
 
 savePalettes = () => {
   event.preventDefault()
-  // paletteData, paletteName, projectTitle - parameters
   const savedPaletteData = []
   const hexCodes = ['.value-one', '.value-two', '.value-three', '.value-four', '.value-five']
   const title = $('.palette-name').val()
@@ -90,10 +89,12 @@ savePalettes = () => {
   })
 
   const project = $('select').find(':selected').text()
-  console.log(project)
-  console.log(savedPaletteData)
-  console.log(savedProjects)
+  let data = Object.keys(savedProjects)
+  let matchingId = data.find(value => value === project)
+  let projectId = savedProjects[matchingId]
+  savedPaletteData.push(projectId)
 
+  console.log(savedPaletteData)
   clearInputs()
 }
 
