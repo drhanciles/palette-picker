@@ -87,7 +87,6 @@ header {
 }
 
 /* Buttons */
-
 button {
   padding: 8px; 
   margin: 0 0 30px 50px;
@@ -124,6 +123,80 @@ select {
   font-size: 2rem; 
   font-weight: 600; 
   background-color: #C4C4C4; 
+}
+
+/* Saved Projects and Palettes */
+.project-container {
+  width: 70%; 
+}
+
+.project-header {
+  background-color: #C4C4C4;  
+}
+
+.saved-project-title {
+  font-size: 2rem; 
+  font-weight: 600; 
+  margin-top: 8px; 
+}
+
+.saved-palette-container {
+  background-color: #40434A; 
+  height: 300px; 
+  display: flex;
+  flex-direction: column; 
+  padding: 20px; 
+  
+}
+
+.name-delete-container {
+  display: flex; 
+  margin-bottom: 15px; 
+}
+
+.saved-palette-name {
+  font-size: 1.5rem; 
+  font-weight: 600; 
+  color: #ffffff; 
+  margin-top: 10px; 
+
+}
+
+.delete-palette {
+  font-size: 1.5rem; 
+  color: #ffffff; 
+  margin: 15px 0 0 10px;
+  cursor: pointer; 
+}
+
+.block-container {
+  display: flex;
+  flex-direction: column; 
+}
+
+.block {
+  height: 30px; 
+  width: 220px; 
+}
+
+.color-block-one {
+  background-color: #2FB19F; 
+}
+
+.color-block-two {
+  background-color: #6B5458; 
+}
+
+.color-block-three {
+  background-color: #A1B7B3; 
+}
+
+.color-block-four {
+  background-color: #397DC0; 
+}
+
+.color-block-five {
+  background-color: #85ABC9; 
 }
 
 
