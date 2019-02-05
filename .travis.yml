@@ -1,3 +1,12 @@
 language: node_js
 node_js:
-  - "node"
+- node
+services:
+  - postgresql
+before_script:
+  - psql -c 'CREATE DATABASE travis_test;' -U postgres
+notifications:
+  email: false
+deploy:
+  api_key:
+    secure: nXBymK7J5VlTGF2U9CRBFk4OM5eCCKLCCBW1Mrck1Ootkmq2PBIqB6UGEVUTerb1wmv6bxioeDNP/x3IoTPz+hVROyJXe6bQMXiGxAMtKkXHCHqwL/iTlPWeqOGcu2/LHsUBDW6zk5WmeZOcERG+YGUQapABXejYEFGG8L7zaSjpupvz7aHj/6SBgW8UNEl6UdCfYFtn2SD+oHFyhS6RD9Xh43Q3IhoNjZkMRe6maXrYvljiVmHN21fCvrgFBJ55VKMYiZDcK61t4jmwkQb/o07meq3WcuF0IvrNmLSMtNAFgxMoU9rIO5vTKbPLFDqXkLUfriZ7WYwjCJ6yYHLuL4mAccGzk1bBfvNZIjCGaaaT6Ij16JTzgmEGCBct23pa5ULAHrvPYQYhC2h5Avk3G8tqB10srsgTUbbnp5LPkvcA+RWCtMIZyMBpSHr1eD4Nn8WHz1t17qW9Lsa3/+LLAJ4CHpZw/i8y2/NwIap9EQKqufHlOETioB4TADfOo/CqzsvfEW3qKQGC5fiXNp7QroKC7MzTldZSzY3LtW3WhRLrNdJIvK8msrsk96Oz7BkrxTEsOlGOhlgPPDi2ILsFGOE5pRh2iQPpDwzjTLfQ7Kqwf6tP2USdEazWwAUcw8y4tt/p4o9SOTf8NpGGdNkeGH2Gt3Cd7hYlQiB4N8Df3b8=

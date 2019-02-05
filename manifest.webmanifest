@@ -1,0 +1,29 @@
+{
+  "name": "Palette Picker", 
+  "short_name": "Palette", 
+  "start_url": "/", 
+  "display": "standalone", 
+  "background_color": "#E2E9F1", 
+  "description": "A palette generation app.", 
+  "icons": [{
+    "src": "https://www.fillmurray.com/128/128", 
+    "type": "image/jpeg", 
+    "sizes": "128x128"
+  }, 
+  {
+    "src": "https://www.fillmurray.com/144/144", 
+    "type": "image/jpeg", 
+    "sizes": "144x144"
+  }, 
+  {
+    "src": "https://www.fillmurray.com/152/152", 
+    "type": "image/jpeg", 
+    "sizes": "152x152"
+  }, 
+  {
+    "src": "https://www.fillmurray.com/192/192", 
+    "type": "image/jpeg", 
+    "sizes": "192x192"
+  }
+  ]
+}
