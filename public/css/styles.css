@@ -140,6 +140,11 @@ select {
   margin: 0 auto;  
 }
 
+.saved-project {
+  height: 200px; 
+  width: 500px; 
+}
+
 .project-header {
   background-color: #C4C4C4;  
 }

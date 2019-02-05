@@ -3,7 +3,16 @@ const bodyParser = require('body-parser');
 const app = express(); 
 const environment = process.env.NODE_ENV || 'development'; 
 const configuration = require('./knexfile')[environment]
-const database = require('knex')(configuration); 
+const database = require('knex')(configuration);
+
+const requireHTTPS = (rep, res, next) => {
+  if (req.headers['x-forwared-proto'] !== 'https') {
+    return res.redirect('https://' + req.get('host') + req.url); 
+  }
+    next(); 
+}
+
+if(process.env.NODE_ENV === 'production') {app.use(requireHTTPS)}
 
 app.use(bodyParser.json()); 
 app.use(express.static('public'))

@@ -5,7 +5,8 @@
   "display": "standalone", 
   "background_color": "#E2E9F1", 
   "description": "A palette generation app.", 
-  "icons": [{
+  "icons": [
+  {
     "src": "https://www.fillmurray.com/128/128", 
     "type": "image/jpeg", 
     "sizes": "128x128"
@@ -25,5 +26,5 @@
     "type": "image/jpeg", 
     "sizes": "192x192"
   }
-  ]
+    ]
 }
