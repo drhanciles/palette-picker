@@ -103,9 +103,9 @@ savePalettes = () => {
   postPalettes(savedPaletteData, projectId, title)
   clearInputs()
   let newPalette = `
-                  <article class=saved-palette-container>
+                  <article class="saved-palette">
                     <span class="name-delete-container">
-                      <p class="saved-palette-name">Pastelle Colorway</p>
+                      <p class="saved-palette-name">${title}</p>
                       <i class="fas fa-times delete-palette"></i>
                     </span>
                     <div class="block-container">
@@ -117,7 +117,7 @@ savePalettes = () => {
                     </div>
                   </article>
                 `
-  $('saved-palette-container').append(newPalette)
+  $('.saved-palette-container').append(newPalette)
 }
 
 postPalettes = (paletteData, projectId, paletteTitle) => {
@@ -225,4 +225,4 @@ $('.create-project-button').on('click', saveProjects)
 
 $('.save-palette-button').on('click', savePalettes)
 
-$('delete-palette').on('click', deletePalette)
+$('.delete-palette').on('click', deletePalette)
