@@ -85,6 +85,7 @@ clearInputs = () => {
 }
 
 savePalettes = () => {
+  debugger; 
   event.preventDefault()
   const savedPaletteData = []
   const hexCodes = ['.value-one', '.value-two', '.value-three', '.value-four', '.value-five']
@@ -102,6 +103,8 @@ savePalettes = () => {
   
   postPalettes(savedPaletteData, projectId, title)
   clearInputs()
+  let hexBlocks = ['.color-block-one', '.color-block-two', '.color-block-three', '.color-block-four', '.color-block-five']
+
   let newPalette = `
                   <article class="saved-palette">
                     <span class="name-delete-container">
@@ -109,15 +112,19 @@ savePalettes = () => {
                       <i class="fas fa-times delete-palette"></i>
                     </span>
                     <div class="block-container">
-                      <div class="block color-block-one"></div>
-                      <div class="block color-block-two"></div>
-                      <div class="block color-block-three"></div>
-                      <div class="block color-block-four"></div>
-                      <div class="block color-block-five"></div>
                     </div>
                   </article>
                 `
   $('.saved-palette-container').append(newPalette)
+
+  hexBlocks.forEach(hexBlock => {
+    let block
+    block = $(("<div>", {class: `${hexBlock} block`}));
+    hexCodes.forEach(hexCode => {
+       $(block).css({"background-color": `${hexCode}`})
+    }) 
+    $('.block-container').append(block)
+  })
 }
 
 postPalettes = (paletteData, projectId, paletteTitle) => {
